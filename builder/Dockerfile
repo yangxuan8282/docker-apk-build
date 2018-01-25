@@ -1,6 +1,6 @@
 
 
-FROM    alpine:edge
+FROM    arm32v6/alpine:edge
 
 ADD     repositories /etc/apk/repositories
 RUN     apk -U add alpine-sdk
