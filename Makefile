@@ -7,7 +7,7 @@ builder:
 	docker build -t apk_builder:${BUILD_ID} builder/
 
 target:
-	mkdir -p target
+	mkdir -p target aports
 aports:
 	git clone git://dev.alpinelinux.org/aports
 
@@ -19,7 +19,7 @@ aports_update: aports
 user.abuild:
 	mkdir -p user.abuild
 
-build: builder target aports
+build: builder target
 	docker run -ti \
 		-v ${PWD}/user.abuild/:/home/packager/.abuild \
 		-v ${PWD}/aports:/work \
