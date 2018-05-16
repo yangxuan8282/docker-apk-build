@@ -7,7 +7,7 @@ builder:
 	docker build -t apk_builder:${BUILD_ID} builder/
 
 target:
-	mkdir -p target aports
+	mkdir -p target aports .ccache
 aports:
 	git clone git://dev.alpinelinux.org/aports
 
@@ -25,6 +25,7 @@ build: builder target
 		-v ${PWD}/aports:/work \
 		-v ${PWD}/target:/target \
 		-v ${HOME}/.gitconfig/:/home/packager/.gitconfig \
+		-v ${PWD}/.ccache:/home/packager/.ccache \
 		apk_builder:${BUILD_ID} \
 		sh
 
