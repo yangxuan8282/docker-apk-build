@@ -1,6 +1,7 @@
 
 BUILD_ID ?= ${USER}
 
+ARCH ?= ${lscpu | grep Architecture | awk '{print $2}'}
 
 .PHONY: builder
 builder:

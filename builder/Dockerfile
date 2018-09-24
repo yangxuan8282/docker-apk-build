@@ -1,6 +1,6 @@
 
-
-FROM    arm32v6/alpine:edge
+FROM    arm64v8/alpine:edge
+#FROM    arm32v6/alpine:edge
 
 ADD     repositories /etc/apk/repositories
 RUN     apk -U add alpine-sdk
@@ -17,7 +17,8 @@ RUN     apk add --update ccache
 ENV     PATH="/usr/lib/ccache/bin:$PATH"
 
 ADD     setup.sh /home/packager/bin/setup.sh
-# TODO: customize /etc/abuild.conf
+
+RUN     sed -i 's|JOBS=2|JOBS=$(nproc)|' /etc/abuild.conf
 
 WORKDIR /work
 USER    packager
