@@ -1,6 +1,6 @@
 
-FROM    arm64v8/alpine:edge
-#FROM    arm32v6/alpine:edge
+FROM    multiarch/alpine:aarch64-edge
+#FROM    multiarch/alpine:armhf-edge
 
 ADD     repositories /etc/apk/repositories
 RUN     apk add --upgrade apk-tools && \
